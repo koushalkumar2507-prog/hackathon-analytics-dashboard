@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Admin Dashboard</title>
+
+  <link rel="stylesheet" href="style.css"/>
+
+  <style>
+
+    body{
+      background:#0f172a;
+      color:white;
+      font-family:Arial;
+      padding:40px;
+    }
+
+    h1{
+      margin-bottom:30px;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      background:#111827;
+      border-radius:12px;
+      overflow:hidden;
+    }
+
+    th,td{
+      padding:16px;
+      border-bottom:1px solid #1f2937;
+      text-align:left;
+    }
+
+    th{
+      background:#1e293b;
+    }
+
+    input,select{
+      padding:8px;
+      border-radius:8px;
+      border:none;
+      width:100px;
+    }
+
+    button{
+      padding:10px 16px;
+      border:none;
+      border-radius:8px;
+      cursor:pointer;
+      background:#3b82f6;
+      color:white;
+      font-weight:bold;
+    }
+
+    button:hover{
+      opacity:.9;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <h1>Admin Dashboard</h1>
+
+  <table>
+
+    <thead>
+      <tr>
+        <th>Team</th>
+        <th>Project</th>
+        <th>Score</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody id="admin-body"></tbody>
+
+  </table>
+
+
+  <script>
+
+    async function loadSubmissions() {
+
+      const response = await fetch(
+        "http://localhost:5000/api/admin/submissions"
+      );
+
+      const data = await response.json();
+
+      const tbody =
+        document.getElementById("admin-body");
+
+      tbody.innerHTML = "";
+
+      data.forEach((item) => {
+
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+          <td>${item.team_name}</td>
+
+          <td>${item.project_title}</td>
+
+          <td>
+            <input
+              type="number"
+              value="${item.score || 0}"
+              id="score-${item.id}"
+            />
+          </td>
+
+          <td>
+
+            <select id="status-${item.id}">
+
+              <option value="Pending"
+                ${item.status === "Pending" ? "selected" : ""}
+              >
+                Pending
+              </option>
+
+              <option value="Qualified"
+                ${item.status === "Qualified" ? "selected" : ""}
+              >
+                Qualified
+              </option>
+
+              <option value="Rejected"
+                ${item.status === "Rejected" ? "selected" : ""}
+              >
+                Rejected
+              </option>
+
+            </select>
+
+          </td>
+
+          <td>
+
+            <button onclick="updateSubmission(${item.id})">
+              Save
+            </button>
+
+          </td>
+        `;
+
+        tbody.appendChild(tr);
+
+      });
+
+    }
+
+
+
+    async function updateSubmission(id) {
+
+      const score =
+        document.getElementById(`score-${id}`).value;
+
+      const status =
+        document.getElementById(`status-${id}`).value;
+
+
+      const response = await fetch(
+        `http://localhost:5000/api/admin/submissions/${id}`,
+        {
+          method: "PUT",
+
+          headers: {
+            "Content-Type": "application/json"
+          },
+
+          body: JSON.stringify({
+            score,
+            status
+          })
+        }
+      );
+
+      const data = await response.json();
+
+      alert(data.message);
+
+      loadSubmissions();
+
+    }
+
+
+    loadSubmissions();
+
+  </script>
+
+</body>
+</html>

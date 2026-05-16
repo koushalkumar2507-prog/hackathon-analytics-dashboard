@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>
+    Hackathon Analytics Dashboard
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  />
+
+</head>
+
+<body>
+
+  <div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+      <div class="sidebar-logo">
+
+        <span class="logo-icon">
+          ⬡
+        </span>
+
+        <span class="logo-text">
+          HackBoard
+        </span>
+
+      </div>
+
+
+      <nav class="sidebar-nav">
+
+        <a href="#" class="nav-item active">
+
+          <span class="nav-icon">
+            ◈
+          </span>
+
+          Dashboard
+
+        </a>
+
+
+        <a href="#" class="nav-item">
+
+          <span class="nav-icon">
+            ◎
+          </span>
+
+          Teams
+
+        </a>
+
+
+        <a href="#" class="nav-item">
+
+          <span class="nav-icon">
+            ◇
+          </span>
+
+          Submissions
+
+        </a>
+
+
+        <a href="#" class="nav-item">
+
+          <span class="nav-icon">
+            ◉
+          </span>
+
+          Schedule
+
+        </a>
+
+
+        <a href="#" class="nav-item">
+
+          <span class="nav-icon">
+            △
+          </span>
+
+          Results
+
+        </a>
+
+      </nav>
+
+
+      <div class="sidebar-footer">
+
+        <div class="user-avatar">
+          AK
+        </div>
+
+        <div class="user-info">
+
+          <span class="user-name">
+            Admin
+          </span>
+
+          <span class="user-role">
+            Organizer
+          </span>
+
+        </div>
+
+      </div>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main">
+
+      <!-- Header -->
+      <header class="header">
+
+        <div>
+
+          <h1 class="header-title">
+            Analytics Dashboard
+          </h1>
+
+          <p class="header-sub">
+            Hackathon 2025 — Live Tracking
+          </p>
+
+        </div>
+
+
+        <div
+          style="
+            display:flex;
+            gap:16px;
+            align-items:center;
+          "
+        >
+
+          <div class="header-badge">
+
+            <span class="pulse-dot"></span>
+
+            Live
+
+          </div>
+
+
+          <button
+            onclick="logout()"
+            class="submit-btn"
+            style="
+              padding:10px 16px;
+              font-size:14px;
+            "
+          >
+
+            Logout
+
+          </button>
+
+        </div>
+
+      </header>
+
+
+      <!-- ───────────────────────────────────── -->
+      <!-- Analytics Cards -->
+      <!-- ───────────────────────────────────── -->
+
+      <section class="stats-grid">
+
+        <!-- Total Teams -->
+        <div class="stat-card card-blue">
+
+          <div class="stat-label">
+            Total Teams
+          </div>
+
+          <div
+            class="stat-value"
+            id="total-teams"
+          >
+            0
+          </div>
+
+          <div class="stat-delta">
+            Registered teams
+          </div>
+
+        </div>
+
+
+        <!-- Total Submissions -->
+        <div class="stat-card card-green">
+
+          <div class="stat-label">
+            Submissions
+          </div>
+
+          <div
+            class="stat-value"
+            id="total-submissions"
+          >
+            0
+          </div>
+
+          <div class="stat-delta">
+            Projects submitted
+          </div>
+
+        </div>
+
+
+        <!-- Average Score -->
+        <div class="stat-card card-amber">
+
+          <div class="stat-label">
+            Average Score
+          </div>
+
+          <div
+            class="stat-value"
+            id="average-score"
+          >
+            0
+          </div>
+
+          <div class="stat-delta">
+            Overall performance
+          </div>
+
+        </div>
+
+
+        <!-- Qualified -->
+        <div class="stat-card card-purple">
+
+          <div class="stat-label">
+            Qualified
+          </div>
+
+          <div
+            class="stat-value"
+            id="qualified-count"
+          >
+            0
+          </div>
+
+          <div class="stat-delta">
+            Top performing teams
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ───────────────────────────────────── -->
+<!-- Leaderboard -->
+<!-- ───────────────────────────────────── -->
+
+<section class="card table-card">
+
+  <h3 class="section-title">
+    Leaderboard
+  </h3>
+
+
+  <!-- Search + Filter -->
+  <div
+    style="
+      display:flex;
+      gap:12px;
+      margin-bottom:20px;
+      flex-wrap:wrap;
+      align-items:center;
+    "
+  >
+
+    <!-- Search -->
+    <input
+      type="text"
+      id="search-input"
+      placeholder="Search team..."
+      class="input"
+      style="
+        max-width:260px;
+      "
+    />
+
+    <!-- Filter -->
+    <select
+      id="status-filter"
+      class="input"
+      style="
+        max-width:220px;
+      "
+    >
+
+      <option value="All">
+        All Status
+      </option>
+
+      <option value="Qualified">
+        Qualified
+      </option>
+
+      <option value="Pending">
+        Pending
+      </option>
+
+      <option value="Rejected">
+        Rejected
+      </option>
+
+    </select>
+
+
+    <!-- Export Excel Button -->
+    <button
+      class="submit-btn"
+      onclick="exportExcel()"
+      style="
+        padding:10px 18px;
+      "
+    >
+
+      Export Excel
+
+    </button>
+
+  </div>
+
+
+  <div class="table-wrapper">
+
+    <table
+      class="table"
+      id="leaderboard-table"
+    >
+
+      <thead>
+
+        <tr>
+
+          <th>
+            Rank
+          </th>
+
+          <th>
+            Team
+          </th>
+
+          <th>
+            Score
+          </th>
+
+          <th>
+            Status
+          </th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody id="leaderboard-body">
+
+        <!-- Dynamic rows -->
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+<!-- ───────────────────────────────────── -->
+<!-- Analytics Chart -->
+<!-- ───────────────────────────────────── -->
+
+<section class="card">
+
+  <h3 class="section-title">
+    Performance Analytics
+  </h3>
+
+  <div class="chart-container">
+
+    <canvas
+      id="analyticsChart"
+    ></canvas>
+
+  </div>
+
+</section>
+
+
+<!-- ───────────────────────────────────── -->
+<!-- Submit Project -->
+<!-- ───────────────────────────────────── -->
+
+<section class="card form-card">
+
+  <h3 class="section-title">
+    Submit Project
+  </h3>
+
+  <div
+    class="form-grid"
+    id="submit-form"
+  >
+
+    <!-- Team Name -->
+    <div class="input-group">
+
+      <label class="input-label">
+        Team Name
+      </label>
+
+      <input
+        type="text"
+        id="team-name"
+        class="input"
+        placeholder="e.g. ByteBlasters"
+      />
+
+    </div>
+
+
+    <!-- Project Title -->
+    <div class="input-group">
+
+      <label class="input-label">
+        Project Title
+      </label>
+
+      <input
+        type="text"
+        id="project-title"
+        class="input"
+        placeholder="e.g. EcoTrack AI"
+      />
+
+    </div>
+
+
+    <!-- GitHub -->
+    <div class="input-group">
+
+      <label class="input-label">
+        GitHub Repository
+      </label>
+
+      <input
+        type="text"
+        id="github-link"
+        class="input"
+        placeholder="https://github.com/..."
+      />
+
+    </div>
+
+
+    <!-- Demo -->
+    <div class="input-group">
+
+      <label class="input-label">
+        Demo Link
+      </label>
+
+      <input
+        type="text"
+        id="demo-link"
+        class="input"
+        placeholder="https://demo.example.com"
+      />
+
+    </div>
+
+
+    <!-- Description -->
+    <div class="input-group full-span">
+
+      <label class="input-label">
+        Project Description
+      </label>
+
+      <textarea
+        id="description"
+        class="input textarea"
+        placeholder="Describe your project, tech stack, and impact..."
+      ></textarea>
+
+    </div>
+
+
+    <!-- Submit Button -->
+    <div class="full-span">
+
+      <button
+        class="submit-btn"
+        id="submit-btn"
+        onclick="handleSubmit()"
+      >
+
+        Submit Project
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- Success Message -->
+  <div
+    id="success-msg"
+    class="success-msg hidden"
+  >
+
+    ✓ Project submitted successfully!
+
+  </div>
+
+</section>
+
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+</html>

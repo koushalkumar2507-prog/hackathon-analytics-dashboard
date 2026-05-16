@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Judge Scoring Panel</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .judge-container {
+      padding: 40px;
+    }
+
+    .judge-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .judge-table input,
+    .judge-table select {
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+    }
+
+    .judge-table button {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 8px;
+      background: #2563eb;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .judge-table button:hover {
+      background: #1d4ed8;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="judge-container">
+
+    <div class="judge-header">
+      <div>
+        <h1>Judge Scoring Panel</h1>
+        <p>Update team scores and qualification status</p>
+      </div>
+
+      <button class="submit-btn" onclick="logout()">
+        Logout
+      </button>
+    </div>
+
+    <section class="card table-card">
+      <h3 class="section-title">All Submissions</h3>
+
+      <div class="table-wrapper">
+        <table class="table judge-table">
+          <thead>
+            <tr>
+              <th>Team</th>
+              <th>Project</th>
+              <th>GitHub</th>
+              <th>Score</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody id="judge-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="judge.js"></script>
+
+</body>
+</html>
