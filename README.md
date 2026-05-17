@@ -17,10 +17,9 @@
 <h2>🚀 Live Project Links</h2>
 
 <ul>
-  <li><b>Frontend:</b> Add your Vercel link here</li>
+  <li><b>Frontend:</b>hackathon-analytics-dashboard.vercel.app</li>
   <li><b>Backend:</b> https://hackathon-dashboard-backend-pcp6.onrender.com</li>
-  <li><b>GitHub Repository:</b> Add your GitHub repo link here</li>
-  <li><b>Working Model Video:</b> Add your 5-minute video link here</li>
+  <li><b>GitHub Repository:</b>https://github.com/koushalkumar2507-prog/hackathon-analytics-dashboard.git</li>
 </ul>
 
 <h2>🔐 Demo Login</h2>
