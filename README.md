@@ -273,47 +273,6 @@ CREATE TABLE submissions (
 );
 </pre>
 
-<h2>🎥 Working Model Video Presentation</h2>
-
-<p>
-  A 5-minute working model explanation video should include:
-</p>
-
-<ul>
-  <li>Project overview</li>
-  <li>Login and authentication</li>
-  <li>Project submission</li>
-  <li>Judge scoring panel</li>
-  <li>Leaderboard update</li>
-  <li>Analytics dashboard</li>
-  <li>Deployment explanation</li>
-</ul>
-
-<p>
-  <b>Video Link:</b> Add your video link here
-</p>
-
-<h2>📸 Screenshots</h2>
-
-<ul>
-  <li>Login Page</li>
-  <li>Dashboard Page</li>
-  <li>Judge Panel</li>
-  <li>Leaderboard and Chart</li>
-</ul>
-
-<h2>🎯 Future Scope</h2>
-
-<ul>
-  <li>Real-time leaderboard using Socket.IO</li>
-  <li>Email notifications</li>
-  <li>Multiple judge accounts</li>
-  <li>AI-based project evaluation</li>
-  <li>PDF report export</li>
-  <li>Team profile pages</li>
-  <li>Role-based admin access</li>
-</ul>
-
 <h2>👨‍💻 Developed By</h2>
 
 <p>
