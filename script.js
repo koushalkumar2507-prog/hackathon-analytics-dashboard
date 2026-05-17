@@ -11,7 +11,7 @@ async function fetchLeaderboard() {
     }
 
     const response = await fetch(
-      "http://localhost:5000/api/analytics/leaderboard",
+      "https://hackathon-dashboard-backend-pcp6.onrender.com/api/analytics/leaderboard",
       {
         headers: {
           Authorization: `Bearer ${token}`
@@ -202,7 +202,7 @@ async function handleSubmit() {
   try {
     const token = localStorage.getItem("token");
 
-    const response = await fetch("http://localhost:5000/api/submissions", {
+    const response = await fetch("https://hackathon-dashboard-backend-pcp6.onrender.com/api/submissions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

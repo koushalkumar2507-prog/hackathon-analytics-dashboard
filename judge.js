@@ -9,7 +9,7 @@ async function loadSubmissions() {
   }
 
   try {
-    const response = await fetch("http://localhost:5000/api/submissions", {
+    const response = await fetch("https://hackathon-dashboard-backend-pcp6.onrender.com/api/submissions", {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -104,7 +104,7 @@ async function updateSubmission(id) {
 
   try {
     const response = await fetch(
-      `http://localhost:5000/api/analytics/score/${id}`,
+      `https://hackathon-dashboard-backend-pcp6.onrender.com/api/analytics/score/${id}`,
       {
         method: "PUT",
 
@@ -143,7 +143,7 @@ async function deleteSubmission(id) {
 
   try {
     const response = await fetch(
-      `http://localhost:5000/api/submissions/${id}`,
+      `https://hackathon-dashboard-backend-pcp6.onrender.com/api/submissions/${id}`,
       {
         method: "DELETE",
         headers: {
